@@ -1,0 +1,95 @@
+**NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.**
+
+# The goal of this pack is to make permanent/restart proof stasis chamber on minecraft bedrock
+
+Stasis Chamber allow players to teleport back from millions of block back to their base(where the stasis chamber was built) but this chamber only work if the chunk in which it is made is always active until Minecraft Java 1.21.2
+
+In Minecraft Java 1.21.2,Ender pearl chunk loading and log proof pearls was added, which made permanent log proof stasis and ender pearl cannon a thing
+
+But this features never made its way to bedrock
+
+While this pack make permanent chamber possible,we still need ender pearl chunk loading by default(as an in game mechanic) for enderpearl canon
+
+# About
+
+This behaviour pack uses entity tag(PearlOwner) to persistently store Pearl's Owner into world's save file(orlvldb).
+The script for this behaviour pack was made using gemini.
+Also the Behaviour pack is made achivement friendly using MikeHomer's trick from bedrock chunk loader
+
+# Download
+
+Mediafire-https://www.mediafire.com/file/kcich7fyaz3to9a/BetterEnderPearl_BP.zip/file
+Replace .zip with .mcpack
+
+# Generic Idea Of What Script Does
+
+| Variable / Function / EventsListener | Description |
+|---|---|
+| `entity.addTag` | Adds a custom tag `PearlOwner` directly onto the pearl entity. Tag is saved into lvldb,world's save file (unload n restart-proof). |
+| `activePearls = new Map()` | Is a cache memory which is used to store pearl along with `PearlOwner` tag. |
+| `impactLocation` | A set of 3D coordinates passed by Minecraft's physics engine at the exact millisecond the pearl hits a block or entity. |
+| `dimensionId` | Stores the dimension in which the pearl currently exists. |
+| `deadId`  | Gets the pearl's ID, which is matched in the Map (like a lookup table) to find the `PearlOwner`. |
+| `OfflineTP`  | To Store pending teleports of particular player specifically. |
+| `world.setDynamicProperty` | Allows saving pending teleports into lvldb. |
+| `world.getDynamicProperty` | Allows calling pending teleports from lvldb. |
+| `function mapPearlOwner` | Links loaded pearls to the `PearlOwner` tag and stores it using `activePearls`. |
+| `function handlePearlImpact` | Teleports the player if present in the world; otherwise stores the teleport data to `world.setDynamicProperty`. |
+| `world.afterEvents.entitySpawn.subscribe` | Used to tag the pearl with the `PearlOwner` tag when the pearl is thrown. |
+| `world.afterEvents.playerSpawn.subscribe` | When a player login it checks if they haave any pending teleports or not if so teleport them. |
+| `world.afterEvents.entityLoad.subscribe` | Looks for pearls when a chunk is loaded; if found, calls `function mapPearlOwner`. |
+| `world.afterEvents.projectileHitBlock.subscribe` | If projectile hitting the block is enderpearl  it calls `function handlePearlImpact`. |
+| `world.afterEvents.projectileHitEntity.subscribe` | If projectile hitting entity is enderpearl it calls `function handlePearlImpact`. |
+
+# Tests performed by me on world and bds server.NO TESTS HAS BEEN DONE IN REALMS
+
+Made a stasis unload it closed the game ran different applications restarted the device and opened game after multipe hours and stasis still works
+
+Made two stasis in the overworld moved one player to nether and other to end closed the server restarted it loaded the stasis through a third player and activated both at the exact same time both player got teleported at the exact same time and teleport worked through dimension
+
+Activated the stasis while player was not in the world and when the player joined,the player was on the stasis
+
+All the test worked the way they were expected/intended to and are performend in a three year old world
+
+# Known cases
+
+If a single player has different stasis chambers active,and activated all at the exact same game tick, they get teleported to the place where last stasis got active(in case of this script)
+
+Stasis on Chunk Border NOT RECOMMENDED !! haven't tried messing around with and won't recommend it either
+
+OfflineTP is more of SafetyNet and not a feature !!
+
+>IT ONLY WORKS IF PEARL HAS BEEN UNLOADED ONCE
+
+>>If enough(say 15-20) pending teleports trigger at once, it can cause a micro-stutter or a lag spike
+
+>>>Script can theoretically hold roughly thousands of pending teleports simultaneously in the OfflineTP
+
+Pearl throw hasn't been throughly tested what if pearl reaches boundary of render distance before exit and what if render distance is reduced/increased during rejoin,etc
+
+Pearl effects are weird on bedrock like there are no sounds/particle at long teleport and sometimes sounds but no particle at certain distance(Feels much beeter on java).Therefore teleport would also feels kinda off weird
+
+# Ideation
+
+So I saw this video  https://youtu.be/TY1MEQMyQdw?si=tA9TsnAdpc-WYuz2. in OmLedu's Discord Server 
+
+It made me realise that ender pearl stasis exists, till now I thought they didn't at all !! (I travelled around 10k blocks on my survival bds server and spend lot of time getting back home where I could have been back home whenever I wanted too)
+
+So I started doing my own test in bds server and realised that the pearl maintain owner data as long as they are loaded area or in player spawn chunks(known discoverers thewhyaxis42,17lives and goldenhelmet) and  teleport works as long as player is on the server/world at time of teleport but failed duirng restars
+
+And So I looked at java and there pearl stores both its entity id and owner data permanently
+
+So to mimics this exact thing the idea of using customtag came into picture and here we are  
+
+# Helps
+
+Special thanks to Anoan-2 and HWC Rebel from OmLedu's Discord server who helped me understanding a bunch of stuff and correcting me
+
+# References
+Microsoft Official Bedrock Stable APIs Documentation  
+https://learn.microsoft.com/en-us/minecraft/creator/scriptapi/minecraft/server/worldafterevents?view=minecraft-bedrock-stable
+https://learn.microsoft.com/en-us/minecraft/creator/scriptapi/minecraft/server/entity?view=minecraft-bedrock-stable
+https://learn.microsoft.com/en-us/minecraft/creator/documents/scripting/multiplayer-scripts?view=minecraft-bedrock-stable
+
+Bedrock wiki  
+https://wiki.bedrock.dev/scripting/script-server
