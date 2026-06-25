@@ -1,3 +1,4 @@
+
 **NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.**
 
 # The goal of this pack is to make permanent/restart proof stasis chamber on minecraft bedrock
@@ -6,9 +7,18 @@ Stasis Chamber allow players to teleport back from millions of block back to the
 
 In Minecraft Java 1.21.2,Ender pearl chunk loading and log proof pearls was added, which made permanent log proof stasis and ender pearl cannon a thing
 
+<img width="672" height="342" alt="Screenshot_2026-06-23_17-11-55" src="https://github.com/user-attachments/assets/4e89351e-520d-49c4-b9f6-63c77ded2aa7" />
+
 But this features never made its way to bedrock
 
 While this pack make permanent chamber possible,we still need ender pearl chunk loading by default(as an in game mechanic) for enderpearl canon
+
+# Download
+
+Mediafire-https://www.mediafire.com/file/kcich7fyaz3to9a/BetterEnderPearl_BP.zip/file
+
+Replace .zip with .mcpack
+
 
 # About
 
@@ -16,10 +26,13 @@ This behaviour pack uses entity tag(PearlOwner) to persistently store Pearl's Ow
 The script for this behaviour pack was made using gemini.
 Also the Behaviour pack is made achivement friendly using MikeHomer's trick from bedrock chunk loader
 
-# Download
+https://github.com/user-attachments/assets/29c8e177-81b6-4d20-a0b0-a8104348fb07
 
-Mediafire-https://www.mediafire.com/file/kcich7fyaz3to9a/BetterEnderPearl_BP.zip/file
-Replace .zip with .mcpack
+https://github.com/user-attachments/assets/f7bbccf0-9b3d-4c66-894c-a00ab66faa69
+
+https://github.com/user-attachments/assets/fe86959b-1ae6-46d0-b60f-5bd94eafb7da
+
+https://github.com/user-attachments/assets/d9afc1af-37ed-4775-b767-9209760b4e77
 
 # Generic Idea Of What Script Does
 
@@ -41,11 +54,14 @@ Replace .zip with .mcpack
 | `world.afterEvents.projectileHitBlock.subscribe` | If projectile hitting the block is enderpearl  it calls `function handlePearlImpact`. |
 | `world.afterEvents.projectileHitEntity.subscribe` | If projectile hitting entity is enderpearl it calls `function handlePearlImpact`. |
 
-# Tests performed by me on world and bds server.NO TESTS HAS BEEN DONE IN REALMS
+# Tests performed by me on world and bds server.
+## NO TESTS HAS BEEN DONE IN REALMS
 
 Made a stasis unload it closed the game ran different applications restarted the device and opened game after multipe hours and stasis still works
 
 Made two stasis in the overworld moved one player to nether and other to end closed the server restarted it loaded the stasis through a third player and activated both at the exact same time both player got teleported at the exact same time and teleport worked through dimension
+
+https://youtu.be/cLl9HV5fvqc?si=u5O6awMUtjj17pt-
 
 Activated the stasis while player was not in the world and when the player joined,the player was on the stasis
 
@@ -84,6 +100,9 @@ So to mimics this exact thing the idea of using customtag came into picture and 
 # Helps
 
 Special thanks to Anoan-2 and HWC Rebel from OmLedu's Discord server who helped me understanding a bunch of stuff and correcting me
+<img width="668" height="396" alt="Screenshot_2026-06-22_21-56-15" src="https://github.com/user-attachments/assets/ead553c1-9123-487d-9cca-9660e9a432e0" />
+<img width="1022" height="126" alt="Screenshot_2026-06-23_17-59-04" src="https://github.com/user-attachments/assets/e0852290-35a8-4cb8-9a68-b16e71067b6d" />
+
 
 # References
 Microsoft Official Bedrock Stable APIs Documentation  
