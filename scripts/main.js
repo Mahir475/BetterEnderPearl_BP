@@ -50,40 +50,7 @@ world.afterEvents.entityLoad.subscribe((event) => {
     }
 });
 
-// 3. Process Pending Teleports on Login
-world.afterEvents.playerSpawn.subscribe((event) => {
-    if (event.initialSpawn) {
-        const player = event.player;
-        const tpDataString = world.getDynamicProperty(`OfflineTP:${player.name}`);
-        
-        if (tpDataString) {
-            const tpData = JSON.parse(tpDataString);
-            
-            // 1. Teleport the player on the next tick so they don't clip or fall at spawn
-            system.run(() => {
-                try {
-                    const dim = world.getDimension(tpData.dimension);
-                    const dest = { x: tpData.x, y: tpData.y, z: tpData.z };
-                    
-                    // Audio at spawn location right before they vanish
-                    try { player.dimension.playSound("mob.endermen.portal", player.location, { volume: 1.0, pitch: 1.0 }); } catch (e) {}
-                    
-                    // Performing the actual teleportation
-                    player.teleport(dest, { dimension: dim });
-
-                    // Audio at destination
-                    try { player.dimension.playSound("mob.endermen.portal", player.location, { volume: 1.0, pitch: 1.0 }); } catch (e) {}
-                    
-                    // Clear the pending property immediately so it doesn't double-trigger
-                    world.setDynamicProperty(`OfflineTP:${player.name}`, undefined);    
-                } catch (e) {
-                    console.warn(`Failed to process offline teleport for ${player.name}: ${e}`);
-                }
-            });
-        }
-    }
-});
-// 4.Teleport when collides or interacts
+// 3.Teleport when collides or interacts
 function handlePearlImpact(projectile, impactLocation, dimensionId) {
     let deadId = null;
     //To account for things which might break/fail teleport 
@@ -123,18 +90,9 @@ function handlePearlImpact(projectile, impactLocation, dimensionId) {
                         rotation: rot
                     });
                 } catch (e) {
-                    console.warn(`Online teleportation failed for ${ownerName}: ${e}`);
+                    console.warn(`Teleportation failed for ${ownerName}: ${e}`);
                 }
             });
-        } else {
-            // Someone/Something interacted with offline player's pearl
-            // Stores the data under a key assigned to player's name
-            world.setDynamicProperty(`OfflineTP:${ownerName}`, JSON.stringify({
-                x: impactLocation.x,
-                y: impactLocation.y,
-                z: impactLocation.z,
-                dimension: dimensionId
-            }));
         }
         //Cleans memory cache
         activePearls.delete(deadId);
