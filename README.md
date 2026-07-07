@@ -44,7 +44,7 @@ Tried using damage sensor to trigger tick world(allows to add tick world only to
 
 Cause wind charge don't do any damage hence it fails
 
-Modifiying the json file of wind charge cause the pearl to get destroyed(probably remove_on_hit)
+Modifiying the json file of wind charge cause the pearl to get destroyed
 
 So,well I haven't found any effective solution,I am providing 2 version of pack with and without tick world.
 Pearl loading should be fine if you are only gonna use 1-2 stasis.
