@@ -12,6 +12,12 @@ But this features never made its way to bedrock
 
 While this pack make permanent chamber possible,we still need ender pearl chunk loading by default(as an in game mechanic) for enderpearl canon
 
+# Changelogs
+
+Removed the Offline TP thing that felt out of vanilla isn't really required
+
+Added one more behaviour pack with pearl loading 
+
 # Why not use tick world?
 PS : Tick world loads area around an entity
 
@@ -29,7 +35,7 @@ I saw this
 
 And was like well my pack should fix it(Spoiler : IT DOESS)
 
-So I started what could be differntiating between pearl canon and stasis thats when the speed of the pearl came in my mind but couldn't find anything which allowed to read the speed
+So I started looking at what could be differntiating between pearl canon and stasis. The speed of the pearl came in my mind but couldn't find anything which allowed to read the speed
 Next approach which came was detecting the blast on pearl and found this
 
 <img width="1322" height="616" alt="Screenshot_2026-07-01_15-18-59" src="https://github.com/user-attachments/assets/5b6823db-3b79-4ee5-8a04-ffe02a208948" />
@@ -52,7 +58,7 @@ https://www.mediafire.com/file/ypw8fndixuqcdbu/BetterEnderPearl_BP%2528no_tick_w
 
 Pearl with chunk loading
 
-https://www.mediafire.com/file/ypw8fndixuqcdbu/BetterEnderPearl_BP%2528no_tick_world%2529.zip/file
+https://www.mediafire.com/file/hw2p7wr0u0x3wtl/BetterEnderPearl_BP%2528tick_world%2529.zip/file
 
 # About
 
@@ -85,12 +91,6 @@ https://github.com/user-attachments/assets/d9afc1af-37ed-4775-b767-9209760b4e77
 | `world.afterEvents.entityLoad.subscribe` | Looks for pearls when a chunk is loaded; if found, calls `function mapPearlOwner`. |
 | `world.afterEvents.projectileHitBlock.subscribe` | If projectile hitting the block is enderpearl  it calls `function handlePearlImpact`. |
 | `world.afterEvents.projectileHitEntity.subscribe` | If projectile hitting the entity is enderpearl it calls `function handlePearlImpact`. |
-
-# Changelogs
-
-Removed the Offline TP thing that felt out of vanilla isn't really required
-
-Added one more behaviour pack with pearl loading 
 
 # Tests performed by me on world and bds server.NO TESTS HAS BEEN DONE IN REALMS
 
