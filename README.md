@@ -23,10 +23,11 @@ PS : Tick world loads area around an entity
 
 tick world loads(lowest) a 5x5 Chunk area = 25 fully loaded chunk and on java pearls loads 3x3 chunk area with 1 fully loaded chunk and 8 lazy chunk
 
-Hence this isn't best way to have pearl chunk loader(I think) and would limit the no of stasis plus you would have to calculate where you are placing your stasis(for example places with flowing liquids should be avoided) since those chunk remain forever login i.e playerless for(ex- bee farm,iron farm),crops would run throught your player through 
-And in v1 having working stasis was more than enough for me
+Hence this isn't best way to have pearl chunk loader(I think) and would limit the no of stasis plus you would have to calculate where you are placing your stasis, since those chunk remain forever login i.e playerless for(ex- bee farm,iron farm,glov),crops would run throught your player through 
 
 <img width="667" height="227" alt="Screenshot_2026-07-06_22-37-24" src="https://github.com/user-attachments/assets/fccd54b1-2261-4aa3-9f36-082d5ff23262" />
+
+It isn't as heavy as I make it sound.Think of it as an player standing/sitting on one place just don't have it near lag machines like sand duping,etc and u should be good to go 
 
 # Why now?
 
@@ -96,6 +97,8 @@ https://github.com/user-attachments/assets/d9afc1af-37ed-4775-b767-9209760b4e77
 
 Tests are done in 26.21 but should be fine on latest version as well
 
+Works in 26.33 as well
+
 Made a stasis unload it closed the game ran different applications restarted the device and opened game after multipe hours and stasis still works
 
 Made two stasis in the overworld moved one player to nether and other to end closed the server restarted it loaded the stasis through a third player and activated both at the exact same time both player got teleported at the exact same time and teleport worked through dimension
@@ -129,7 +132,9 @@ If a single player has different stasis chambers active,and activated all at the
 
 Stasis on Chunk Border NOT RECOMMENDED !! haven't tried messing around with and won't recommend it either
 
-Pearl Cannon should work as long as your device/server is able to keep up with the speed of loading chunks and would stop working if you end up getting disconnected mid flight
+Pearl Cannon should work as long as your device/server is able to keep up with the speed of loading chunks
+
+Teleport between nether portal overworld to nether works sometimes and nether to overworld doesn't work at all.No idea why the behaciour is like this
 
 Pearl effects are weird on bedrock like there are no sounds/particle at long teleport and sometimes sounds but no particle at certain distance(Feels much better on java).Therefore teleport would also feels kinda off weird
 
