@@ -23,7 +23,7 @@ PS : Tick world loads area around an entity
 
 tick world loads(lowest) a 5x5 Chunk area = 25 fully loaded chunk and on java pearls loads 3x3 chunk area with 1 fully loaded chunk and 8 lazy chunk
 
-Hence this isn't best way to have pearl chunk loader(I think) and would limit the no of stasis plus you would have to calculate where you are placing your stasis, since those chunk remain forever login i.e playerless for(ex- bee farm,iron farm,glov),crops would run throught your player through 
+Hence this isn't best way to have pearl chunk loader(I think) and would limit the no of stasis plus you would have to calculate where you are placing your stasis, since those chunk remain forever login i.e playerless farm,crops would run throughout your play through 
 
 <img width="667" height="227" alt="Screenshot_2026-07-06_22-37-24" src="https://github.com/user-attachments/assets/fccd54b1-2261-4aa3-9f36-082d5ff23262" />
 
